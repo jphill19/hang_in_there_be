@@ -93,4 +93,22 @@ describe "Posters API" do
     expect(poster).to have_key(:img_url)
     expect(poster[:img_url]).to be_a(String)
   end
+
+  it "can delete a poster" do
+    poster =  Poster.create(name: "Last Resort",
+      description: "Cut my life into pieces, this is my last resort.",
+      price: 109.00,
+      year: 2000,
+      vintage: true,
+      img_url:  "https://media.licdn.com/dms/image/C4E12AQGjklvrQy5SqA/article-cover_image-shrink_600_2000/0/1607974565714?e=2147483647&v=beta&t=4o5OEtO3oXD3szr9M3O1lbzWtMR9pXvSXFnySH2Kd_8")
+
+
+    expect(Poster.count).to eq(1)
+
+    delete "/api/v1/posters/#{poster.id}"
+
+    expect(response).to be_successful
+    expect(Poster.count).to eq(0)
+    expect{ Poster.find(poster.id) }.to raise_error(ActiveRecord::RecordNotFound)
+  end
 end
