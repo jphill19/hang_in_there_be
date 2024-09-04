@@ -57,7 +57,6 @@ describe "Posters API" do
       expect(poster[:img_url]).to be_a(String)
     end
   end
-  
   it "can get one poster by its id" do
     id = Poster.create(name: "Last Resort",
     description: "Cut my life into pieces, this is my last resort.",
@@ -73,7 +72,6 @@ describe "Posters API" do
     poster = posters_data[:data].first
 
     expect(response).to be_successful
-    
     expect(poster).to have_key(:id)
     expect(poster[:id]).to be_an(Integer)
 
@@ -96,6 +94,3 @@ describe "Posters API" do
     expect(poster[:img_url]).to be_a(String)
   end
 end
-
-end
-
