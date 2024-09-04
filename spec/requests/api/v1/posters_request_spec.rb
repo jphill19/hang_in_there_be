@@ -123,6 +123,38 @@ describe "Posters API" do
     expect(response).to be_successful
     expect(poster.description).to_not eq(previous_description)
     expect(poster.description).to eq("There is hope after all")
+
+    expect(response).to be_successful
+    posters_data = JSON.parse(response.body, symbolize_names: true)
+    poster = posters_data[:data].first
+
+    expect(response).to be_successful
+    expect(poster).to have_key(:id)
+    expect(poster[:id]).to be_an(Integer)
+
+    expect(poster).to have_key(:type)
+    expect(poster[:type]).to be_a(String)
+
+    expect(poster).to have_key(:attributes)
+    attributes = poster[:attributes]
+
+    expect(attributes).to have_key(:name)
+    expect(attributes[:name]).to be_a(String)
+
+    expect(attributes).to have_key(:description)
+    expect(attributes[:description]).to be_a(String)
+
+    expect(attributes).to have_key(:price)
+    expect(attributes[:price]).to be_a(Float)
+
+    expect(attributes).to have_key(:year)
+    expect(attributes[:year]).to be_an(Integer)
+
+    expect(attributes).to have_key(:vintage)
+    expect(attributes[:vintage]).to eq(true)
+
+    expect(attributes).to have_key(:img_url)
+    expect(attributes[:img_url]).to be_a(String)
     end
 
     it "can create a new poster" do
