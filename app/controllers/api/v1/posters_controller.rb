@@ -9,4 +9,16 @@ class Api::V1::PostersController < ApplicationController
     render json: PosterSerializer.format_posters([ poster ])
   end
 
+
+  def update 
+    poster = Poster.find(params[:id])
+    poster.update(poster_params)
+    render json: PosterSerializer.format_posters([poster])
+  end
+
+  private
+
+  def poster_params
+    params.require(:poster).permit(:name, :description, :price, :year, :vintage, :img_url)
+  end 
 end
