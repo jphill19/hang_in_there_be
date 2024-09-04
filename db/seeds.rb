@@ -52,5 +52,3 @@ Poster.create(name: "Aging",
   img_url:  "https://media.npr.org/assets/img/2015/02/27/shapes-health_wide-9fd818f034b5e7e219510212b30fce18edab983a.jpg")
 
 puts "Poster seeded succesfully"
-
-

@@ -51,8 +51,8 @@ describe "Posters API" do
       expect(poster[:year]).to be_an(Integer)
 
       expect(poster).to have_key(:vintage)
-      expect(poster[:vintage]).to be_in([true, false])
-      
+      expect(poster[:vintage]).to be_in([ true, false ])
+
       expect(poster).to have_key(:img_url)
       expect(poster[:img_url]).to be_a(String)
     end
