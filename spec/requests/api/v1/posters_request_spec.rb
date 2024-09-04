@@ -2,8 +2,8 @@ require 'rails_helper'
 
 
 describe "Posters API" do
-  before(:each) do
-    Poster.create(name: "REGRET",
+  it "sends a list of Posters" do
+      Poster.create(name: "REGRET",
       description: "Hard work rarely pays off.",
       price: 89.00,
       year: 2018,
@@ -23,9 +23,7 @@ describe "Posters API" do
       year: 2014,
       vintage: true,
       img_url:  "https://as1.ftcdn.net/v2/jpg/05/60/56/58/1000_F_560565861_F81rpaECDU1hxBMkfL5N7WOMoUGra9hw.jpg")
-  end
 
-  it "sends a list of Posters" do
     get '/api/v1/posters'
 
     expect(response).to be_successful
