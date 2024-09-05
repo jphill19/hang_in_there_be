@@ -1,5 +1,6 @@
 class Api::V1::PostersController < ApplicationController
   def index
+    # refactor
     if params[:sort] == 'asc'
       posters = Poster.order(created_at: :asc)
     elsif params[:sort] == 'desc'
@@ -7,27 +8,35 @@ class Api::V1::PostersController < ApplicationController
     else
       posters = Poster.all
     end
-    render json: PosterSerializer.format_posters(posters)
+    options = {}
+    options[:meta] = {count: posters.length}
+    render json: PosterSerializer.new(posters, options)
   end
   
   def show
     poster = Poster.find(params[:id])
-    render json: PosterSerializer.format_posters([ poster ])
+    options = {}
+    options[:meta] = {count: [poster].count}
+    render json: PosterSerializer.new([ poster ], options)
   end
 
   def destroy
-    render json: Poster.delete(params[:id])
+    Poster.delete(params[:id])
   end
 
   def create
     poster = Poster.create(poster_params)
-    render json: PosterSerializer.format_posters([poster])
+    options = {}
+    options[:meta] = {count: [poster].count}
+    render json: PosterSerializer.new([poster],options)
   end
 
   def update 
     poster = Poster.find(params[:id])
     poster.update(poster_params)
-    render json: PosterSerializer.format_posters([poster])
+    options = {}
+    options[:meta] = {count: [poster].count}
+    render json: PosterSerializer.new([poster],options)
   end
 
   private
