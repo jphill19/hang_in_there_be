@@ -3,6 +3,7 @@ class Api::V1::PostersController < ApplicationController
     posters = Poster.all
                           .sort_asc(params[:sort])
                           .sort_dsc(params[:sort])
+                          .filter_by_name(params[:name])
     options = {}
     options[:meta] = {count: posters.length}
     render json: PosterSerializer.new(posters, options)
