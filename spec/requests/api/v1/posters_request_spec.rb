@@ -162,7 +162,7 @@ describe "Posters API" do
 
     posters_data = JSON.parse(response.body, symbolize_names: true)
 
-    poster = posters_data[:data].first
+    poster = posters_data[:data]
 
     expect(response).to be_successful
     expect(poster).to have_key(:id)
@@ -231,7 +231,7 @@ describe "Posters API" do
 
     expect(response).to be_successful
     posters_data = JSON.parse(response.body, symbolize_names: true)
-    poster = posters_data[:data].first
+    poster = posters_data[:data]
 
     expect(response).to be_successful
     expect(poster).to have_key(:id)
@@ -287,7 +287,7 @@ describe "Posters API" do
     
     expect(response).to be_successful
     posters_data = JSON.parse(response.body, symbolize_names: true)
-    poster = posters_data[:data].first
+    poster = posters_data[:data]
 
     expect(response).to be_successful
     expect(poster).to have_key(:id)

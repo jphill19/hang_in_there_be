@@ -13,9 +13,7 @@ class Api::V1::PostersController < ApplicationController
   
   def show
     poster = Poster.find(params[:id])
-    options = {}
-    options[:meta] = {count: [poster].count}
-    render json: PosterSerializer.new([ poster ], options)
+    render json: PosterSerializer.new(poster)
   end
 
   def destroy
@@ -25,17 +23,13 @@ class Api::V1::PostersController < ApplicationController
 
   def create
     poster = Poster.create(poster_params)
-    options = {}
-    options[:meta] = {count: [poster].count}
-    render json: PosterSerializer.new([poster],options)
+    render json: PosterSerializer.new(poster)
   end
 
   def update 
     poster = Poster.find(params[:id])
-    poster.update(poster_params)
-    options = {}
-    options[:meta] = {count: [poster].count}
-    render json: PosterSerializer.new([poster],options)
+    poster.update(poster_params) 
+    render json: PosterSerializer.new(poster)
   end
 
   private
