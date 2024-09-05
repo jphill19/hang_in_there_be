@@ -317,5 +317,77 @@ describe "Posters API" do
     expect(attributes).to have_key(:img_url)
     expect(attributes[:img_url]).to be_a(String)
   end
-end
 
+  it "returns a count of the posters shown with only one poster" do
+    # Create a single poster for the test
+    Poster.create(
+      name: "REGRET",
+      description: "Hard work rarely pays off.",
+      price: 89.00,
+      year: 2018,
+      vintage: true,
+      img_url: "https://plus.unsplash.com/premium_photo-1661293818249-fddbddf07a5d")
+
+    Poster.create(name: "Aging",
+      description: "The older you get, the more likely you are to forget why you walked into a room.",
+      price: 43.0,
+      year: 2022,
+      vintage: true,
+      img_url:  "https://media.istockphoto.com/id/91520053/photo/senior-man-shrugging-shoulders.jpg?s=612x612&w=0&k=20&c=x9iR8Az32VZwE0VOlu9s30Urp8HunhuwfBN2RmFCytg=")
+
+    Poster.create(name: "Life",
+      description: "Even if you eat well, exercise regularly, and do everything right, you're still going to age and eventually decline..",
+      price: 144.00,
+      year: 2021,
+      vintage: false,
+      img_url:  "https://media.npr.org/assets/img/2015/02/27/shapes-health_wide-9fd818f034b5e7e219510212b30fce18edab983a.jpg")
+
+  
+    get '/api/v1/posters'
+  
+    json_response = JSON.parse(response.body, symbolize_names: true)
+  
+    expect(json_response).to have_key(:meta)
+    expect(json_response[:meta]).to have_key(:count)
+    expect(json_response[:meta][:count]).to eq(3)
+  end 
+
+  it "returns posters filtered by name" do
+    Poster.create(name: "REGRET",
+      description: "Hard work rarely pays off.",
+      price: 89.00,
+      year: 2018,
+      vintage: true,
+      img_url:  "https://plus.unsplash.com/premium_photo-1661293818249-fddbddf07a5d")
+
+    Poster.create(name: "Last Resort",
+      description: "Cut my life into pieces, this is my last resort.",
+      price: 109.00,
+      year: 2000,
+      vintage: true,
+      img_url:  "https://media.licdn.com/dms/image/C4E12AQGjklvrQy5SqA/article-cover_image-shrink_600_2000/0/1607974565714?e=2147483647&v=beta&t=4o5OEtO3oXD3szr9M3O1lbzWtMR9pXvSXFnySH2Kd_8")
+
+    Poster.create(name: "Potato",
+      description: "You're a couch potato.",
+      price: 3.00,
+      year: 2014,
+      vintage: true,
+      img_url:  "https://as1.ftcdn.net/v2/jpg/05/60/56/58/1000_F_560565861_F81rpaECDU1hxBMkfL5N7WOMoUGra9hw.jpg")
+  
+    get '/api/v1/posters', params: {name:'last'}
+  
+    json_response = JSON.parse(response.body, symbolize_names: true)
+  
+    expect(json_response).to have_key(:meta)
+    expect(json_response[:meta][:count]).to eq(1)
+  
+    posters = json_response[:data].first
+    # binding.pry
+    expect(posters[:attributes][:name]).to eq("Last Resort")
+    expect(posters[:attributes][:description]).to eq("Cut my life into pieces, this is my last resort.")
+    expect(posters[:attributes][:price]).to eq(109.0)
+    expect(posters[:attributes][:year]).to eq(2000)
+    expect(posters[:attributes][:vintage]).to eq(true)
+    expect(posters[:attributes][:img_url]).to eq("https://media.licdn.com/dms/image/C4E12AQGjklvrQy5SqA/article-cover_image-shrink_600_2000/0/1607974565714?e=2147483647&v=beta&t=4o5OEtO3oXD3szr9M3O1lbzWtMR9pXvSXFnySH2Kd_8")
+  end
+end 
