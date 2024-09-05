@@ -20,6 +20,7 @@ class Api::V1::PostersController < ApplicationController
 
   def destroy
     Poster.delete(params[:id])
+    render nothing: true, status: 204
   end
 
   def create
