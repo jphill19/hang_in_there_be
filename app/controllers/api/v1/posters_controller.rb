@@ -4,6 +4,8 @@ class Api::V1::PostersController < ApplicationController
                           .sort_asc(params[:sort])
                           .sort_dsc(params[:sort])
                           .filter_by_name(params[:name])
+                          .filter_by_min_price(params[:min_price])
+                          .filter_by_max_price(params[:max_price])
     options = {}
     options[:meta] = {count: posters.length}
     render json: PosterSerializer.new(posters, options)
