@@ -36,7 +36,7 @@ describe "Posters API" do
 
     posters.each do |poster|
       expect(poster).to have_key(:id)
-      expect(poster[:id]).to be_an(Integer)
+      expect(poster[:id]).to be_an(String)
 
       expect(poster).to have_key(:type)
       expect(poster[:type]).to be_a(String)
@@ -166,7 +166,7 @@ describe "Posters API" do
 
     expect(response).to be_successful
     expect(poster).to have_key(:id)
-    expect(poster[:id]).to be_an(Integer)
+    expect(poster[:id]).to be_an(String)
 
     expect(poster).to have_key(:type)
     expect(poster[:type]).to be_a(String)
@@ -235,7 +235,7 @@ describe "Posters API" do
 
     expect(response).to be_successful
     expect(poster).to have_key(:id)
-    expect(poster[:id]).to be_an(Integer)
+    expect(poster[:id]).to be_an(String)
 
     expect(poster).to have_key(:type)
     expect(poster[:type]).to be_a(String)
@@ -291,7 +291,7 @@ describe "Posters API" do
 
     expect(response).to be_successful
     expect(poster).to have_key(:id)
-    expect(poster[:id]).to be_an(Integer)
+    expect(poster[:id]).to be_an(String)
 
     expect(poster).to have_key(:type)
     expect(poster[:type]).to be_a(String)
