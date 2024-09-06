@@ -6,5 +6,8 @@ class Poster < ApplicationRecord
   scope :filter_by_max_price, -> (max_price) {where("price <= #{max_price}") if max_price.present?}
 
   validates :name, presence: true, uniqueness: true
-  
+  validates :description, presence: true
+  validates :year, presence: true, numericality: { only_integer: true}
+  validates :price, presence: true, numericality: { only_float: true }
+  validates :vintage, presence: true
 end
