@@ -331,6 +331,36 @@
           null
         ]
       },
+      "/Users/johnhill/Documents/mod_2/projects/task_manager/hang_in_there_api/hang_in_there_api/spec/requests/api/v1/posters_request_errors_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          null,
+          null
+        ]
+      },
       "/Users/johnhill/Documents/mod_2/projects/task_manager/hang_in_there_api/hang_in_there_api/spec/requests/api/v1/posters_request_spec.rb": {
         "lines": [
           1,
@@ -865,8 +895,19 @@
           null,
           null,
           1,
+          null,
+          2,
           1,
           1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
           null,
           null,
           1,
@@ -876,12 +917,21 @@
           null,
           1,
           1,
+          null,
+          1,
+          0,
+          0,
+          null,
           1,
           null,
           null,
           1,
           1,
           1,
+          1,
+          0,
+          0,
+          null,
           1,
           null,
           null,
@@ -889,6 +939,20 @@
           null,
           1,
           2,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
           null,
           null
         ]
@@ -909,6 +973,6 @@
         ]
       }
     },
-    "timestamp": 1725670501
+    "timestamp": 1725726470
   }
 }
