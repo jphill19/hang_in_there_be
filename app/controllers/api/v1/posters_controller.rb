@@ -6,6 +6,16 @@ class Api::V1::PostersController < ApplicationController
                           .sort_dsc(params[:sort])
                           .filter_by_min_price(params[:min_price])
                           .filter_by_max_price(params[:max_price])
+
+    if posters.empty?
+      render json: {
+        errors: [
+          status: "404",
+          message: "Record not found"
+        ] 
+      }, status: 404
+      return
+    end
     options = {}
     options[:meta] = {count: posters.length}
     render json: PosterSerializer.new(posters, options)
