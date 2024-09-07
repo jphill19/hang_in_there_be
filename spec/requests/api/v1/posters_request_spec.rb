@@ -334,7 +334,7 @@ describe "Posters API" do
       vintage: true,
       img_url:  "https://media.istockphoto.com/id/91520053/photo/senior-man-shrugging-shoulders.jpg?s=612x612&w=0&k=20&c=x9iR8Az32VZwE0VOlu9s30Urp8HunhuwfBN2RmFCytg=")
 
-     poster_1 = Poster.create(name: "Life",
+     Poster.create(name: "Life",
       description: "Even if you eat well, exercise regularly, and do everything right, you're still going to age and eventually decline..",
       price: 144.0,
       year: 2021,
