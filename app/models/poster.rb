@@ -9,5 +9,5 @@ class Poster < ApplicationRecord
   validates :description, presence: true
   validates :year, presence: true, numericality: { only_integer: true}
   validates :price, presence: true, numericality: { only_float: true }
-  validates :vintage, presence: true
+  validates :vintage, inclusion: {in: [true, false]}
 end
